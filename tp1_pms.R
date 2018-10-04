@@ -23,7 +23,8 @@ displayFixedEffec <- function(x) {
   res[k+1]=max(x)
   
   print(res)
-  hist(x, prob=T, breaks=res)
+  hist = hist(x, prob=T, breaks=res)
+  lines(hist$mids, hist$density, lwd=3)
 }
 
 sturge <- function(x) {
