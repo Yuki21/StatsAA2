@@ -39,14 +39,21 @@ displayFixedEffec <- function(x) {
 
 expQQplot <- function(x) {
   e=length(x)
-  plot(sort(x)[1:e],log(1-seq(1:e)/(e+1)),ylim=c(-2.5,0.1))
+  plot(sort(x)[1:e],log(1-seq(1:e)/(e+1)),ylim=c(-2.5,0.1), main="Q-Q Plot for exp law")
   abline(v=0)
   abline(h=0)
 }
 
 normQQplot <- function(x) {
   e=length(x)
-  plot(sort(x)[1:e], qnorm(seq(1:e)/(e+1)))
+  plot(sort(x)[1:e], qnorm(seq(1:e)/(e+1)), main="Q-Q Plot for normal law")
+  abline(h=0)
+}
+
+uniQQplot <- function(x) {
+  e=length(x)
+  plot(sort(x)[1:e], qunif(seq(1:e)/(e+1)), main="Q-Q Plot for uni law")
+  abline(v=0)
   abline(h=0)
 }
 
@@ -66,6 +73,9 @@ exo1 <- function() {
 exo2 <- function() {
   expData <- rexp(1000, rate=.1) # Tirage simulé exp
   normData <- rnorm(1000) # Tirage simulé norm
+  uniData <- runif(1000) # Tirage simulé uni
   expQQplot(expData)
   normQQplot(normData)
+  #qqnorm(normData) # C'est presque le même truc en vrai
+  uniQQplot(uniData)
 }
