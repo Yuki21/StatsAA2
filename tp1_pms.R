@@ -1,7 +1,7 @@
 #x=c(54.8,55.4,57.7,59.6,65.2,65.4,65.9,66.0,67.6,68.1,69.5,70.6,71.5,73.4) # Faux tirage sons
 #x=c(54.8,55.4,57.7,59.6,60.1,61.2,62.0,63.1,63.5,64.2,65.2,65.4,65.9,66.0,67.6,68.1,69.5,70.6,71.5,73.4) # Vrai tirage sons
 #x=c(0,26,78,130,182,234,275) # Les ampoules
-#x<-c(91.6, 35.7, 251.3, 24.3, 5.4, 67.3, 170.9, 9.5, 118.4, 57.1) # Les vrais ampoules
+x<-c(91.6, 35.7, 251.3, 24.3, 5.4, 67.3, 170.9, 9.5, 118.4, 57.1) # Les vrais ampoules
 
 displayFixedWidth <- function(x) {
   k=sturge(x)
@@ -44,6 +44,12 @@ expQQplot <- function(x) {
   abline(h=0)
 }
 
+normQQplot <- function(x) {
+  e=length(x)
+  plot(sort(x)[1:e], qnorm(seq(1:e)/(e+1)))
+  abline(h=0)
+}
+
 sturge <- function(x) {
   res = (round(1 + log(length(x)) / log(2)))
   if(res < 5) {
@@ -58,6 +64,8 @@ exo1 <- function() {
 }
 
 exo2 <- function() {
-  x <- rexp(1000, rate=.1) # Tirage simulé exp
-  expQQplot(x)
+  expData <- rexp(1000, rate=.1) # Tirage simulé exp
+  normData <- rnorm(1000) # Tirage simulé norm
+  expQQplot(expData)
+  normQQplot(normData)
 }
