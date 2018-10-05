@@ -1,15 +1,21 @@
 #x=c(54.8,55.4,57.7,59.6,65.2,65.4,65.9,66.0,67.6,68.1,69.5,70.6,71.5,73.4)
-x=c(54.8,55.4,57.7,59.6,60.1,61.2,62.0,63.1,63.5,64.2,65.2,65.4,65.9,66.0,67.6,68.1,69.5,70.6,71.5,73.4)
+#x=c(54.8,55.4,57.7,59.6,60.1,61.2,62.0,63.1,63.5,64.2,65.2,65.4,65.9,66.0,67.6,68.1,69.5,70.6,71.5,73.4)
+#x=c(0,26,78,130,182,234,275) # Les ampoules
+x<-c(91.6, 35.7, 251.3, 24.3, 5.4, 67.3, 170.9, 9.5, 118.4, 57.1) # Les vrais ampoules
 displayFixedWidth <- function(x) {
   k=sturge(x)
+  print(k)
   a0=min(x)-0.025*(max(x)-min(x))
   ak=max(x)+0.025*(max(x)-min(x))
   h=(ak-a0)/k
   
-  hist(x, prob=T, breaks=seq(a0,ak,h), xlim=c(a0-4,ak+2))
+  hist = hist(x, prob=T, breaks=seq(a0,ak,h), xlim=c(a0,ak))
+  lines(hist$mids, hist$density, lwd=3, col="Red")
+  lines(density(x), lwd=3, col="Blue")
 }
 
 displayFixedEffec <- function(x) {
+  x = sort(x)
   k=sturge(x)
   h = length(x)/k
   i=1
@@ -24,12 +30,19 @@ displayFixedEffec <- function(x) {
   
   print(res)
   hist = hist(x, prob=T, breaks=res)
-  lines(hist$mids, hist$density, lwd=3)
+  lines(hist$mids, hist$density, lwd=3, col="Red")
+  lines(density(x), lwd=3, col="Blue")
 }
 
 sturge <- function(x) {
-  return(floor(1 + log(length(x)) / log(2)))
+  res = (round(1 + log(length(x)) / log(2)))
+  if(res < 5) {
+    res = 5
+  }
+  return(res)
 }
 
-displayFixedWidth(x)
-displayFixedEffec(x)
+exo1 <- function() {
+  displayFixedWidth(x)
+  displayFixedEffec(x)
+}
