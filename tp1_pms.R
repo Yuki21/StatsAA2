@@ -9,9 +9,10 @@ displayFixedWidth <- function(x) {
   ak=max(x)+0.025*(max(x)-min(x))
   h=(ak-a0)/k
   
-  hist = hist(x, prob=T, breaks=seq(a0,ak,h), xlim=c(a0,ak))
+  hist = hist(x, prob=T, breaks=seq(a0,ak,h), xlim=c(a0,ak), main="Histogramme à largeur fixée")
   lines(hist$mids, hist$density, lwd=3, col="Red")
   lines(density(x), lwd=3, col="Blue")
+  plot(ecdf(x), main="Fonction de répartition empirique pour largeur fixée")
 }
 
 displayFixedEffec <- function(x) {
@@ -29,9 +30,10 @@ displayFixedEffec <- function(x) {
   res[k+1]=max(x)
   
   print(res)
-  hist = hist(x, prob=T, breaks=res)
+  hist = hist(x, prob=T, breaks=res, main="Histogramme à effectif fixé")
   lines(hist$mids, hist$density, lwd=3, col="Red")
   lines(density(x), lwd=3, col="Blue")
+  plot(ecdf(x), main="Fonction de répartition empirique pour effectif fixé")
 }
 
 sturge <- function(x) {
