@@ -1,7 +1,8 @@
 #x=c(54.8,55.4,57.7,59.6,65.2,65.4,65.9,66.0,67.6,68.1,69.5,70.6,71.5,73.4) # Faux tirage sons
 #x=c(54.8,55.4,57.7,59.6,60.1,61.2,62.0,63.1,63.5,64.2,65.2,65.4,65.9,66.0,67.6,68.1,69.5,70.6,71.5,73.4) # Vrai tirage sons
 #x=c(0,26,78,130,182,234,275) # Les ampoules
-x<-c(91.6, 35.7, 251.3, 24.3, 5.4, 67.3, 170.9, 9.5, 118.4, 57.1) # Les vrais ampoules
+#x<-c(91.6, 35.7, 251.3, 24.3, 5.4, 67.3, 170.9, 9.5, 118.4, 57.1) # Les vrais ampoules
+x <- c(1.0,2.1,2.8,3.7,5.3,6.0,6.5,7.2,8.2,9.5)
 
 displayFixedWidth <- function(x) {
   k=sturge(x)
@@ -66,6 +67,7 @@ sturge <- function(x) {
 }
 
 exo1 <- function() {
+  x <- runif(1000) # Tirage simulé uni
   displayFixedWidth(x)
   displayFixedEffec(x)
 }
@@ -74,8 +76,34 @@ exo2 <- function() {
   expData <- rexp(1000, rate=.1) # Tirage simulé exp
   normData <- rnorm(1000) # Tirage simulé norm
   uniData <- runif(1000) # Tirage simulé uni
-  expQQplot(expData)
-  normQQplot(normData)
+  expQQplot(x)
+  normQQplot(x)
   #qqnorm(normData) # C'est presque le même truc en vrai
-  uniQQplot(uniData)
+  uniQQplot(x)
+}
+
+app <- function() {
+  # uniQQplot(x)
+  # expQQplot(x)
+  # normQQplot(x)
+  # 
+  
+  resM=0
+  resJ=0
+  moyM=0
+  moyJ=0
+  b=15
+  for(i in 1:1000) {
+    x1 = runif(10,0,b)
+    marius=(sum(x1)/length(x1))*2
+    jeannette=max(x1)
+    moyM=moyM+marius
+    moyJ=moyJ+jeannette
+    resM=resM+abs(b-marius)
+    resJ=resJ+abs(b-jeannette)
+  }
+  print(resJ)
+  print(resM)
+  print(moyJ/1000)
+  print(moyM/1000)
 }
