@@ -1,0 +1,65 @@
+\documentclass{article}
+    \usepackage[utf8]{inputenc}
+    
+    \title{APP1 Stats - Ensimag}
+    \author{}
+    \date{17 Octobre 2018}
+    
+    \usepackage{amsfonts}
+    \usepackage{subcaption}
+    \usepackage{graphicx}
+    \usepackage[a4paper, margin=1in]{geometry}
+    \usepackage{listings}
+    \usepackage{minted}
+    \usepackage{amsmath}
+    \usepackage{amsfonts}
+    \usepackage{amssymb}\usepackage{amsmath}
+    \usepackage{color}
+    \usepackage{indentfirst}
+    
+    \renewcommand{\contentsname}{Sommaire}
+    \renewcommand{\thesection}{\Roman{section}}
+    
+\begin{document}
+        
+\maketitle
+
+Voir le fichier \textit{app1.r} pour les commentaires associés.
+
+\section{1ère Méthode (Marius) : Méthode du moment d'ordre 1 (espérance)}
+
+\subsection{Preuve que l'estimateur de Marius n'est pas biaisé (espérance)}
+
+Loi uniforme :\\
+
+Si $X_1...X_n$ sont indépendants et de même loi $U\tilde (a,b)$, alors l'estimateur de $\mathbb{E}(X)=\frac{a+b}{2}$.
+
+\begin{equation}
+    \begin{aligned}
+        \mathbb{E}(\Theta_{Marius})&=\frac{2}{n}\sum_{i=1}^n \mathbb{E}(X_i)\\
+        &=\frac{2}{n}\sum_{i=1}^n \frac{a+b}{2}\\
+        &=\frac{2}{n}n\frac{a+b}{2}\\
+        &=b
+    \end{aligned}
+\end{equation}
+
+En moyenne, notre estimateur est égal à $\theta$, donc non biaisé.
+
+\subsection{Preuve que l'estimateur de Marius est convergent (variance)}
+
+\begin{equation}
+    \begin{aligned}
+        Var(\Theta_{Marius})&=Var(\frac{2}{n}\sum_{i=1}^n X_i)\\
+        &=(\frac{2}{n})^2Var(\sum_{i=1}^n X_i)\\
+        &=(\frac{2}{n})^2\sum_{i=1}^n Var(X_i)\\
+        &=(\frac{2}{n})^2\sum_{i=1}^n \frac{(b-a)^2}{12}\\
+        &=(\frac{2}{n})^2n\frac{(b-a)^2}{12}\\
+        &=\frac{4}{n^2}n\frac{b^2}{12}=\frac{4nb^2}{n^2 12}\\
+        &=\frac{4b^2}{n 12}=\frac{b^2}{3n}\\
+        &\simeq \frac{1}{n}
+    \end{aligned}
+\end{equation}
+
+Donc l'estimateur est dit convergent. C'est un bon estimateur.
+
+\end{document}
