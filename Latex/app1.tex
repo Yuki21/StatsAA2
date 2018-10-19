@@ -79,4 +79,25 @@ $$
 \Leftrightarrow max_{i=1}^n \{X_i\} = \Theta_{Jeannette}
 $$
 
+On calcule la fonction de répartition :
+
+\begin{equation}
+    \begin{aligned}
+        F_X(x)&=\mathbb{P}(max_{i=1}^nX_i\leq x)\\
+        &=\mathbb{P}(\bigcap_{i=1}^n\{X_i\leq x\})\\
+        &=\prod_{i=1}^n\mathbb{P}(X_i\leq x)\\
+        &=\prod_{i=1}^n \frac{x-a}{b-a}\\
+        &=\prod_{i=1}^n \frac{x}{b}=\frac{x^n}{b^n}\\
+        f_X(x)&=F_X'(x)=n\frac{x^{n-1}}{b^n}\\
+        \text{Donc, on a : }\Theta_{Jeannette}=\mathbb{E}(X)&=\int_0^b x(n\frac{x^{n-1}}{b^n})dx\\
+        &=\int_0^b xn\frac{x^n}{b^n}dx\\
+        &=\frac{n}{b^n}\int_0^b x^ndx\\
+        &=\frac{n}{b^n}[\frac{x^{n+1}}{n+1}]_0^b\\
+        &=\frac{n}{b^n}\frac{b^{n+1}}{n+1}\\
+        &=\frac{n}{n+1}b
+    \end{aligned}
+\end{equation}
+
+Le biais de notre estimateur est de $\frac{n}{n+1}$.
+
 \end{document}
