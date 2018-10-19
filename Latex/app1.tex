@@ -62,4 +62,21 @@ En moyenne, notre estimateur est égal à $\theta$, donc non biaisé.
 
 Donc l'estimateur est dit convergent. C'est un bon estimateur.
 
+\section{2ème Méthode (Jeannette) : Méthode du maximum de vraisemblance}
+
+On veut maximiser :
+
+\begin{equation}
+    \begin{aligned}
+        f_{(X_1...X_n)}&=\prod_{i=1}^{n}f_{Xi}\\
+        &=\prod_{i=1}^{n}\frac{1}{b}=\frac{1}{b^n}
+    \end{aligned}
+\end{equation}
+
+On veut donc trouver le $\frac{1}{b^n}$ le plus grand possible. On souhaite alors trouver le $b$ le plus petit possible, i.e. le maximum obtenu dans le jeu de données sans quoi on risque d'exclure des valeurs. Ceci correspond donc bien à la méthode d'estimation utilisée par Jeannette.
+
+$$
+\Leftrightarrow max_{i=1}^n \{X_i\} = \Theta_{Jeannette}
+$$
+
 \end{document}
